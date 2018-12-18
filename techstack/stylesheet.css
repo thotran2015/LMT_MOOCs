@@ -173,3 +173,7 @@ figcaption {
   display: table;
   clear: both;
 }
+
+.dashboard{
+  background-color: #e4e5dd;
+}

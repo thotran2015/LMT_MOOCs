@@ -294,7 +294,7 @@ function dsBarChart() {
 		.attr("y", 15)
 		.attr("class","title")				
 		.attr("text-anchor", "middle")
-		.text("Overall Sales Breakdown 2012")
+		.text("Overall Forum Breakdown ")
 		;
 }
 
@@ -375,7 +375,7 @@ function updateBarChart(group, colorChosen) {
 			.attr("y", 15)
 			.attr("class","title")				
 			.attr("text-anchor", "middle")
-			.text(group + "'s Sales Breakdown 2012")
+			.text(group + "'s Number of Words of a Post vs its Votes ")
 		;
 }
 
@@ -487,7 +487,7 @@ function dsLineChart() {
 	    ;
 
 	svg.append("text")
-		.text("Performance 2012")
+		.text("Number of Words of a Post vs its Votes")
 		.attr("id","lineChartTitle1")	
 		.attr("x",margin.left + ((width + margin.right)/3))
 		.attr("y", margin.top-5)

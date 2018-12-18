@@ -25,8 +25,8 @@ def processThreads(course_threads_loc):
         course_threads_reader = csv.DictReader(course_threads)
         threads = {}
         for row in course_threads_reader:
-            if int(row.get('thread_id'))>800:
-                break
+##            if int(row.get('thread_id'))>800:
+##                break
             thread = dict()
             thread['course_id']= row.get('course_id')
             thread['thread_id'] = row.get('thread_id')
@@ -47,8 +47,8 @@ def processPosts(course_posts_loc):
         course_posts_reader = csv.DictReader(course_posts)
         posts = []
         for row in course_posts_reader:
-            if int(row.get('thread_id'))>30:
-                break
+##            if int(row.get('thread_id'))>30:
+##                break
             post = dict()
             post['course_id']= row.get('course_id')
             post['time']= row.get('post_time')
@@ -60,16 +60,14 @@ def processPosts(course_posts_loc):
     
 thread_map = {2: 'General (Miscellaneous) Discussion', 3: 'Assignments', 4: 'Study Groups / Meetups', 7: 'Course Feedback / Suggestions', 8: 'Lectures',  9: 'Platform Issues', 100: 'Signature Track'}
 threads = processThreads(course_threads_loc)
-def threadCount(course):
+def threadCount(course, file):
     course_thread ={}
     for thread in threads[course]:
-        thread_topic = thread.get('forum_id')
+        thread_topic = thread.get('og_forum')
         if thread_topic not in course_thread:
             course_thread[thread_topic] = [thread]
         else:
             course_thread[thread_topic].append(thread)
-    with open('thread_count.json', mode='w') as outfile:
-        json.dump(course_thread, outfile)
     total = len(sum(course_thread.values(), []))
     cleaned_threads = []
     for topic in course_thread:
@@ -78,7 +76,10 @@ def threadCount(course):
         c_t['category'] = topic
         c_t['measure'] = len(course_thread.get(topic))/total
         cleaned_threads.append(c_t)
+    with open(file, mode='w') as outfile:
+        json.dump(cleaned_threads, outfile)
     return cleaned_threads
-print(threadCount('analysenumerique-001'))
+for course in threads:
+    threadCount(course, course+'_list')
     
     
