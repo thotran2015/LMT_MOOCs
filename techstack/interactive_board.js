@@ -23,7 +23,8 @@ var formatAsPercentage = d3.format("%"),
 */
 
 
-function dsPieChart(dataset, mouseover, mouseout, up){
+function dsPieChart(mouseover, mouseout, up){
+	dataset = datasetPieChosen("assetpricing-001")
 	var basics = dsPieChartBasics(pieColorScheme);
 	var vis = d3.select("#pieChart")
 	     .append("svg:svg")
@@ -86,58 +87,7 @@ function dsPieChart(dataset, mouseover, mouseout, up){
 
 }
 
-dsPieChart(datasetPie, mouseover, mouseout, up);
-
-//update pie
-
-function updatePieChart(group, colorChosen) {
-	
-		var currentDatasetPieChart = datasetPieChosen(group);
-		
-		var basics = dsPieChartBasics();
-
-		var arc = d3.arc()              //this will create <path> elements for us using arc data
-        	.outerRadius(basics.outerRadius).innerRadius(basics.innerRadius);
-   
-   // for animation
- //   var arcFinal = d3.arc().innerRadius(basics.innerRadiusFinal).outerRadius(basics.outerRadius);
-	// var arcFinal3 = d3.arc().innerRadius(basics.innerRadiusFinal3).outerRadius(basics.outerRadius);
-
- //   var pie = d3.pie()           //this will create arc data for us given a list of values
- //        .value(function(d) { return d.measure; });    //we must tell it out to access the value of each element in our data array
-
- //   var arcs = vis.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
- //        .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
- //        .enter()                            //this will create <g> elements for every "extra" data element that should be associated with a selection. The result is creating a <g> for every object in the data array
- //        .on("mouseover", mouseover)
- //    	.on("mouseout", mouseout)
- //    	.on("click", up);
-    				
- //        arcs.attr("fill", function(d, i) { return basics.color(i); } ) //set the color for each slice to be chosen from the color function defined above
- //             .attr("d", arc)     //this creates the actual SVG path using the associated data (pie) with the arc drawing function
-	// 			   .text(function(d) { return d.data.category + ": " + formatAsPercentage(d.data.measure); });			
-
- //        d3.selectAll("g.slice").selectAll("path").transition()
-	// 		    .duration(750)
-	// 		    .delay(10)
-	// 		    .attr("d", arcFinal );
-	
-	//   // Add a label to the larger arcs, translated to the arc centroid and rotated.
-	//   // source: http://bl.ocks.org/1305337#index.html
-	//   arcs.filter(function(d) { return d.endAngle - d.startAngle > .2; })
-	//     .attr("dy", ".35em")
-	//     .attr("text-anchor", "middle")
-	//     .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
-	//       //.text(function(d) { return formatAsPercentage(d.value); })
-	//     .text(function(d) { return d.data.category; });
-	   
-		    	
-	// 	// Pie chart title			
-		vis.select("text.title")
-	      .text(group);		    
-	
-}
-
+dsPieChart(mouseover, mouseout, up);
 
 
 

@@ -1,9 +1,9 @@
 //Pie Helper Functions
 function datasetPieChosen(group) {
 	var ds = [];
-	for (x in dataPie) {
-		 if(dataPie[x].group==group){
-		 	ds.push(dataPie[x]);
+	for (x in dataPie1) {
+		 if(dataPie1[x].course==group){
+		 	ds.push(dataPie1[x]);
 		 } 
 		}
 	return ds;

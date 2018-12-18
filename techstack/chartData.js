@@ -1,26 +1,17 @@
-function datasetPieChosen(group) {
-	var ds = [];
 
-	for (x in dataPie) {
-		 if(dataPie[x].course==group){
-		 	ds.push(dataPie[x]);
-		 } 
-		}
-	return ds;
-}
 
-var dataPie = [{group: 'analysenumerique-001', category: '13', measure: 0.44537815126050423},
-{group: 'analysenumerique-001', category: '12', measure: 0.11764705882352941},
-{group: 'analysenumerique-001', category: '14', measure: 0.07563025210084033},
-{group: 'analysenumerique-001', category: '15', measure: 0.09243697478991597}, 
-{group: 'analysenumerique-001', category: '16', measure: 0.06722689075630252},
-{group: 'analysenumerique-001', category: '17', measure: 0.05042016806722689},
-{group: 'analysenumerique-001', category: '18', measure: 0.11764705882352941},
-{group: 'analysenumerique-001', category: '19', measure: 0.03361344537815126},
-{group: 'relationship-001', category: '13', measure: 0.6},
-{group: 'relationship-001', category: '12', measure: 0.4},
-{group: 'lead-ei-001', category: '11', measure: 0.2},
-{group: 'lead-ei-001', category: '10', measure: 0.8}];
+// var dataPie = [{group: 'analysenumerique-001', category: '13', measure: 0.44537815126050423},
+// {group: 'analysenumerique-001', category: '12', measure: 0.11764705882352941},
+// {group: 'analysenumerique-001', category: '14', measure: 0.07563025210084033},
+// {group: 'analysenumerique-001', category: '15', measure: 0.09243697478991597}, 
+// {group: 'analysenumerique-001', category: '16', measure: 0.06722689075630252},
+// {group: 'analysenumerique-001', category: '17', measure: 0.05042016806722689},
+// {group: 'analysenumerique-001', category: '18', measure: 0.11764705882352941},
+// {group: 'analysenumerique-001', category: '19', measure: 0.03361344537815126},
+// {group: 'relationship-001', category: '13', measure: 0.6},
+// {group: 'relationship-001', category: '12', measure: 0.4},
+// {group: 'lead-ei-001', category: '11', measure: 0.2},
+// {group: 'lead-ei-001', category: '10', measure: 0.8}];
 
 
 var datasetPie = [{group: 'lead-001', category: '13', measure: 0.44537815126050423},
@@ -45,34 +36,51 @@ var datasetPie = [{group: 'lead-001', category: '13', measure: 0.445378151260504
 // {"course": 'lead-ei-001', category: '11', measure: 0.2},
 // {"course": 'lead-ei-001', category: '10', measure: 0.8},
 
-// var dataPie = [
-// {"course": "assetpricing-001", category: "Introduction", "measure": 0.0029717682020802376},
-// {"course": "assetpricing-001", category: "Course Material Feedback", "measure": 0.06092124814264487},
-// {"course": "assetpricing-001", category: "Quizzes and Homeworks", "measure": 0.16047548291233285},
-// {"course": "assetpricing-001", category: "General Discussion", "measure": 0.1901931649331352},
-// {"course": "assetpricing-001", category: "Lectures", "measure": 0.05794947994056464}, 
-// {"course": "assetpricing-001", category: "Study Groups", "measure": 0.03268945022288262},
-// {"course": "assetpricing-001", category: "Technical Feedback", "measure": 0.01634472511144131},
-// {"course": "assetpricing-001", category: "UChicago Ph.D. Students", "measure": 0.04309063893016345},
-// {"course": "assetpricing-001", category: "Week 2", "measure": 0.03268945022288262}, 
-// {"course": "assetpricing-001", category: "Week 0", "measure": 0.010401188707280832},
-// {"course": "assetpricing-001", category: "Week 1", "measure": 0.031203566121842496},
-// {"course": "assetpricing-001", category: "Google Hangouts", "measure": 0.029717682020802376},
-// {"course": "assetpricing-001", category: "Week 3", "measure": 0.02526002971768202}, 
-// {"course": "assetpricing-001", "category": "Hangout 10/18/2013", "measure": 0.010401188707280832},
-// {"course": "assetpricing-001", "category": "Hangout 10/25/13", "measure": 0.01634472511144131},
-// {"course": "assetpricing-001", "category": "Week 4", "measure": 0.04457652303120357}, 
-// {"course": "assetpricing-001", "category": "Hangout 11/1/13", "measure": 0.01188707280832095},
-// {"course": "assetpricing-001", "category": "Week 5", "measure": 0.017830609212481426}, 
-// {"course": "assetpricing-001", "category": "Hangout 11/11/13", "measure": 0.022288261515601784},
-// {"course": "assetpricing-001", "category": "Week 6", "measure": 0.031203566121842496}, 
-// {"course": "assetpricing-001", "category": "Week 7", "measure": 0.04457652303120357}, 
-// {"course": "assetpricing-001", "category": "Week 8", "measure": 0.02526002971768202}, 
-// {"course": "assetpricing-001", "category": "Hangout 11/21/13", "measure": 0.01634472511144131}, 
-// {"course": "assetpricing-001", "category": "Final Exam Typos or Errors", "measure": 0.04309063893016345},
-// {"course": "assetpricing-001", "category": "Hangout 12/6/2013", "measure": 0.022288261515601784}];
+var dataPie1 = [{"course": "assetpricing-001", "category": "Introduction", "measure": 0.0029717682020802376},
+{"course": "assetpricing-001", "category": "Course Material Feedback", "measure": 0.06092124814264487}, 
+{"course": "assetpricing-001", "category": "Quizzes and Homeworks", "measure": 0.16047548291233285},
+{"course": "assetpricing-001", "category": "General Discussion", "measure": 0.1901931649331352},
+{"course": "assetpricing-001", "category": "Lectures", "measure": 0.05794947994056464},
+{"course": "assetpricing-001", "category": "Study Groups", "measure": 0.03268945022288262},
+{"course": "assetpricing-001", "category": "Technical Feedback", "measure": 0.01634472511144131}, 
+{"course": "assetpricing-001", "category": "UChicago Ph.D. Students", "measure": 0.04309063893016345}, 
+{"course": "assetpricing-001", "category": "Week 2", "measure": 0.03268945022288262}, 
+{"course": "assetpricing-001", "category": "Week 0", "measure": 0.010401188707280832}, 
+{"course": "assetpricing-001", "category": "Week 1", "measure": 0.031203566121842496},
+{"course": "assetpricing-001", "category": "Google Hangouts", "measure": 0.029717682020802376},
+{"course": "assetpricing-001", "category": "Week 3", "measure": 0.02526002971768202}, 
+{"course": "assetpricing-001", "category": "Hangout 10/18/2013", "measure": 0.010401188707280832}, 
+{"course": "assetpricing-001", "category": "Hangout 10/25/13", "measure": 0.01634472511144131},
+{"course": "assetpricing-001", "category": "Week 4", "measure": 0.04457652303120357}, 
+{"course": "assetpricing-001", "category": "Hangout 11/1/13", "measure": 0.01188707280832095}, 
+{"course": "assetpricing-001", "category": "Week 5", "measure": 0.017830609212481426}, 
+{"course": "assetpricing-001", "category": "Hangout 11/11/13", "measure": 0.022288261515601784}, 
+{"course": "assetpricing-001", "category": "Week 6", "measure": 0.031203566121842496}, 
+{"course": "assetpricing-001", "category": "Week 7", "measure": 0.04457652303120357}, 
+{"course": "assetpricing-001", "category": "Week 8", "measure": 0.02526002971768202}, 
+{"course": "assetpricing-001", "category": "Hangout 11/21/13", "measure": 0.01634472511144131}, 
+{"course": "assetpricing-001", "category": "Final Exam Typos or Errors", "measure": 0.04309063893016345}, 
+{"course": "assetpricing-001", "category": "Hangout 12/6/2013", "measure": 0.022288261515601784},
+{"course": "analysenumerique-001", "category": "Questions d'ordre technique (coursera, octave, livre...)", "measure": 0.44537815126050423}, 
+{"course": "analysenumerique-001", "category": "Questions sur le Chapitre 1", "measure": 0.11764705882352941}, 
+{"course": "analysenumerique-001", "category": "Questions sur le Chapitre 2", "measure": 0.07563025210084033}, 
+{"course": "analysenumerique-001", "category": "Questions sur le Chapitre 3", "measure": 0.09243697478991597}, 
+{"course": "analysenumerique-001", "category": "Questions sur le Chapitre 4,5,6", "measure": 0.06722689075630252}, 
+{"course": "analysenumerique-001", "category": "Questions sur le Chapitre 8", "measure": 0.05042016806722689}, 
+{"course": "analysenumerique-001", "category": "Questions sur le Chapitre 9", "measure": 0.11764705882352941}, 
+{"course": "analysenumerique-001", "category": "Questions sur le Chapitre 10", "measure": 0.03361344537815126},
+{"course": "lead-ei-001", "category": "Module 1.1", "measure": 0.24033954136576713}, {"course": "lead-ei-001", "category": "Course Material Feedback", "measure": 0.02508551881413911}, {"course": "lead-ei-001", "category": "Technical Feedback", "measure": 0.016596984669960724}, {"course": "lead-ei-001", "category": "Study Groups", "measure": 0.01697706828835677}, {"course": "lead-ei-001", "category": "Week 3", "measure": 0.00012669453946534905}, {"course": "lead-ei-001", "category": "Module 2.3", "measure": 0.0596731280881794}, {"course": "lead-ei-001", "category": "Modules 1.2 & 1.3", "measure": 0.11655897630812112}, {"course": "lead-ei-001", "category": "Lectures", "measure": 0.009755479538831876}, {"course": "lead-ei-001", "category": "Assignments", "measure": 0.025718991511465856}, {"course": "lead-ei-001", "category": "Module 2.1", "measure": 0.06246040795641708}, {"course": "lead-ei-001", "category": "Module 2.2", "measure": 0.06360065881160522}, {"course": "lead-ei-001", "category": "Module 4.1", "measure": 0.032180413024198655}, {"course": "lead-ei-001", "category": "Module 3.1", "measure": 0.04104903078677309}, {"course": "lead-ei-001", "category": "Week 2", "measure": 0.014823261117445839}, {"course": "lead-ei-001", "category": "Module 3.2", "measure": 0.031040162169010517}, {"course": "lead-ei-001", "category": "Module 4.2", "measure": 0.02913974407703028}, {"course": "lead-ei-001", "category": "Week 6", "measure": 0.013683010262257697}, {"course": "lead-ei-001", "category": "Module 7.1", "measure": 0.027492715063980742}, {"course": "lead-ei-001", "category": "Module 5.1", "measure": 0.03192702394526796}, {"course": "lead-ei-001", "category": "Module 5.2", "measure": 0.026225769669327253}, {"course": "lead-ei-001", "category": "Module 5.3", "measure": 0.02913974407703028}, {"course": "lead-ei-001", "category": "Module 9.1", "measure": 0.009755479538831876}, {"course": "lead-ei-001", "category": "Module 8.2", "measure": 0.010895730394020017}, {"course": "lead-ei-001", "category": "Module 9.2", "measure": 0.011655897630812113}, {"course": "lead-ei-001", "category": "Module 7.3", "measure": 0.01330292664386165}, {"course": "lead-ei-001", "category": "Module 8.4", "measure": 0.007348283288990245}, {"course": "lead-ei-001", "category": "Module 8.1", "measure": 0.008741923223109084}, {"course": "lead-ei-001", "category": "Week 1", "measure": 0.00012669453946534905}, {"course": "lead-ei-001", "category": "Module 8.3", "measure": 0.008615228683643734}, {"course": "lead-ei-001", "category": "Module 7.2", "measure": 0.015583428354237932}, {"course": "lead-ei-001", "category": "Course Materials Errors", "measure": 0.0002533890789306981}, {"course": "lead-ei-001", "category": "Technical Issues", "measure": 0.00012669453946534905}];
 
 
+function processData(data){
+	refined = []
+	for (x in data) {
+		t = {course: data[x].course}
+		refined.push(t)
+	}
+	return refined
+}
+console.log(processData(dataPie1))
 
 // var datasetPie = [{"course": 'lead-001', category: '13', measure: 0.44537815126050423},
 // {"course": 'lead-001', category: '12', measure: 0.11764705882352941},

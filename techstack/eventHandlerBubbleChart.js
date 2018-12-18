@@ -76,6 +76,7 @@ function updatePieTitle(currentNode){
 	    .text(currentNode.name+" Thread Forums")
 	    .attr("class","title")}
 
+console.log(datasetPieChosen("assetpricing-001"))
 
 function updatePieGraph(currentNode){
 	console.log(currentNode.icon)
