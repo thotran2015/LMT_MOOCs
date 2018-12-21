@@ -12,7 +12,8 @@ html, body {
 			text-align: center;
 		}
     p{
-      text-align: center;
+      text-align: left;
+      padding: 10px;
     }
 		svg {
 			margin:auto;
