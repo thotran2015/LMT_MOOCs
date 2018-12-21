@@ -3,8 +3,9 @@
 			let node = svg.selectAll('.node')
 			updatePieTitle(currentNode);
 			updatePieGraph(currentNode);
+			updateBarChart1(currentNode);
 			d3.event.stopPropagation();
-			console.log('currentNode', currentNode);
+
 			let currentTarget = d3.event.currentTarget; // the <g> el
 
 			if (currentNode === focusedNode) {
@@ -74,16 +75,15 @@ function updatePieTitle(currentNode){
 		.attr("dy", ".35em")
 	    .attr("text-anchor", "middle")
 	    .text(currentNode.name+" Thread Forums")
-	    .attr("class","title")}
-
-console.log(datasetPieChosen("assetpricing-001"))
+	    .attr("class","title")
+	}
 
 function updatePieGraph(currentNode){
 	console.log(currentNode.icon)
 	var updatedData = datasetPieChosen(currentNode.icon)
 	console.log(updatedData)
 	var basics = dsPieChartBasics(pieColorScheme);
-	//remove pie boyd
+	//remove pie body
 	d3.select("#pieChart").select("#pieChartPlot").select("#pieCenter").remove()
 	var pieBody= d3.select("#pieChart").select("#pieChartPlot")
 		.append("svg:g")                //make a group to hold our pie chart
@@ -92,12 +92,6 @@ function updatePieGraph(currentNode){
 	    .attr("transform", "translate(" + basics.outerRadius + "," + basics.outerRadius + ")");
 	   var arc = d3.arc()              //this will create <path> elements for us using arc data
         	.outerRadius(basics.outerRadius).innerRadius(basics.innerRadius);
- //   var arc = d3.arc()              //this will create <path> elements for us using arc data
- //        	.outerRadius(basics.outerRadius).innerRadius(basics.innerRadius);
- //   var pieSvg = d3.select("#pieChart").select("#pieChart svg");
- //   // for animation
- //   var arcFinal = d3.arc().innerRadius(basics.innerRadiusFinal).outerRadius(basics.outerRadius);
-	// var arcFinal3 = d3.arc().innerRadius(basics.innerRadiusFinal3).outerRadius(basics.outerRadius);
 
    var pie = d3.pie()           //this will create arc data for us given a list of values
         .value(function(d) { return d.measure; });    //we must tell it out to access the value of each element in our data array
@@ -130,19 +124,139 @@ function updatePieGraph(currentNode){
 	    .attr("text-anchor", "middle")
 	    .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
 	      //.text(function(d) { return formatAsPercentage(d.value); })
-	    .text(function(d) { return d.data.category; });
-	   
-		    	
-	// 	// Pie chart title			
-	// 	vis.append("svg:text")
-	//      	.attr("dy", ".35em")
-	//       .attr("text-anchor", "middle")
-	//       .text("Thread Forums")
-	//       .attr("class","title")
-	//       ;		    
+	    .text(function(d) { return d.data.category; });  
+
+	    pieBody.append("svg:text")
+	     	.attr("dy", ".35em")
+	      	.attr("text-anchor", "middle")
+	      	.text("Forum Topics of "+ currentNode.icon)
+	      	.attr("class","title");	
+
+	     pieBody.append("svg:text")
+	     .attr("dy", "1.50em")
+	      .attr("text-anchor", "middle")
+	      .text(updatedData[1].thread_total +" threads")
+	      .attr("class","total")	
 
 }
+
+function datasetBarChosen1(group) {
+	var ds = [];
+	for (x in datasetBarChart1) {
+		 if(datasetBarChart1[x].course_id==group){
+		 	ds.push(datasetBarChart1[x]);
+		 } 
+		}
+	return ds;
+}
+
+	
+function updateBarChart1(currentNode) {
+		group = currentNode.icon;
+		colorChosen = "lightblue";
+	
+		var currentDatasetBarChart = datasetBarChosen1(group);
 		
+		var basics = dsBarChartBasics();
+	
+		var margin = basics.margin,
+			width = basics.width,
+		   height = basics.height,
+			colorBar = basics.colorBar,
+			barPadding = basics.barPadding
+			;
+		
+		var xScale = d3.scaleLinear()
+			.domain([0, currentDatasetBarChart.length])
+			.range([0, width])
+			;
+		
+			
+		var yScale = d3.scaleLinear()
+	      .domain([0, d3.max(currentDatasetBarChart, function(d) { return d.measure; })])
+	      .range([height,0])
+	      ;
+	      
+	   var svg = d3.select("#barChart svg");
+
+	   //update here
+// remove bar graph body
+		d3.select("#barChartBody").remove()
+// add the graph body back
+	var plot = d3.select("#barChartPlot")
+			.datum(currentDatasetBarChart)
+			.append("g")
+		    .attr("id", "barChartBody")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	
+	  		/* Note that here we only have to select the elements - no more appending! */
+	  	plot.selectAll("rect")
+	      .data(currentDatasetBarChart)
+	      .enter()
+		  .append("rect")
+	      .transition()
+			.duration(750)
+			.attr("x", function(d, i) {
+			    return xScale(i);
+			})
+		   .attr("width", width / currentDatasetBarChart.length - barPadding)   
+			.attr("y", function(d) {
+			    return yScale(d.measure);
+			})  
+			.attr("height", function(d) {
+			    return height-yScale(d.measure);
+			})
+			.attr("fill", colorChosen)
+			;
+	// y-axis labels	
+	plot.selectAll("text")
+	.data(currentDatasetBarChart)
+	.enter()
+	.append("text")
+	.text(function(d) {
+			return formatAsInteger(d.measure);
+	})
+	.attr("text-anchor", "middle")
+	// Set x position to the left edge of each bar plus half the bar width
+	.attr("x", function(d, i) {
+			return (i * (width / currentDatasetBarChart.length)) + ((width / currentDatasetBarChart.length - barPadding) / 2);
+	})
+	.attr("y", function(d) {
+			return yScale(d.measure) + 14;
+	})
+	.attr("class", "yAxis")					 
+		;
+// remove bar graph  x-axis labels 
+		d3.select("#barChartPlot").select("#barLabels").remove()
+// add new labels
+		var xLabels =  d3.select("#barChartPlot")
+						.append("g")
+						.attr("id","barLabels" )
+						.attr("transform", "translate(" + margin.left + "," + (margin.top + height)  + ")");
+	
+	xLabels.selectAll("text.xAxis")
+		  .data(currentDatasetBarChart)
+		  .enter()
+		  .append("text")
+		  .text(function(d) { return d.user_type;})
+		  .attr("text-anchor", "middle")
+			// Set x position to the left edge of each bar plus half the bar width
+						   .attr("x", function(d, i) {
+						   		return (i * (width / currentDatasetBarChart.length)) + ((width / currentDatasetBarChart.length - barPadding) / 2);
+						   })
+		  .attr("y", 25)
+		  .attr("class", "xAxis")
+
+
+
+		svg.selectAll("text.title") // target the text element(s) which has a title class defined
+			.attr("x", (width + margin.left + margin.right)/2)
+			.attr("y", 25)
+			.attr("class","title")				
+			.attr("text-anchor", "middle")
+			.text("Number of Posts By Various Users in "+ group)
+		;
+}	
 //blur when click on the 
 		function blur() {
 			let target = d3.event.target;

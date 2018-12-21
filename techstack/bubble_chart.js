@@ -1,3 +1,4 @@
+
 		let svg = d3.select('svg');
 		let width = document.body.clientWidth/2; // get width in pixels
 		let height = +svg.attr('height');
@@ -43,19 +44,22 @@
 				y: centerY + (node.y - centerY) * 3,
 				r: 0, // for tweening
 				radius: node.r, //original radius
+				//id: data.icon,
 				id: data.cat + '.' + (data.name.replace(/\s/g, '-')),
 				cat: data.cat,
 				name: data.name,
 				value: data.value,
 				icon: data.icon,
-				desc: data.desc,
+				desc: data.desc
 			}
 		};
+let root = d3.hierarchy({ children: data }).sum(d => d.value);
+let nodes = pack(root).leaves().map(generateNode);
+
 function dsBubbleChart() {
-		let root = d3.hierarchy({ children: data }).sum(d => d.value);
 		// we use pack() to automatically calculate radius conveniently only
 		// and get only the leaves
-		let nodes = pack(root).leaves().map(generateNode);
+		// let nodes = pack(root).leaves().map(generateNode);
 		//update the circle locations
 		simulation.nodes(nodes).on('tick', ticked);
 
@@ -64,6 +68,7 @@ function dsBubbleChart() {
 			.data(nodes)
 			.enter().append('g')
 			.attr('class', 'node')
+			.attr('id', d=>d.name)
 			.call(d3.drag()
 				.on('start', (d) => {
 					if (!d3.event.active) simulation.alphaTarget(0.2).restart();

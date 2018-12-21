@@ -1,4 +1,4 @@
-   
+
 /*
 ################ FORMATS ##################
 -------------------------------------------
@@ -24,7 +24,8 @@ var formatAsPercentage = d3.format("%"),
 
 
 function dsPieChart(mouseover, mouseout, up){
-	dataset = datasetPieChosen("assetpricing-001")
+	let starter = "assetpricing-001"
+	var dataset = datasetPieChosen(starter)
 	var basics = dsPieChartBasics(pieColorScheme);
 	var vis = d3.select("#pieChart")
 	     .append("svg:svg")
@@ -81,8 +82,14 @@ function dsPieChart(mouseover, mouseout, up){
 		vis.append("svg:text")
 	     	.attr("dy", ".35em")
 	      .attr("text-anchor", "middle")
-	      .text("Thread Forums")
+	      .text("Forum Threads of "+ starter)
 	      .attr("class","title")
+		vis.append("svg:text")
+	     .attr("dy", "1.50em")
+	      .attr("text-anchor", "middle")
+	      .text(dataset[1].thread_total +" threads")
+	      .attr("class","total")
+
 	      ;		    
 
 }
@@ -101,6 +108,16 @@ dsPieChart(mouseover, mouseout, up);
 // set initial group value
 var group = "All";
 
+// function datasetBarChosen(group) {
+// 	var ds = [];
+// 	for (x in datasetBarChart) {
+// 		 if(datasetBarChart[x].group==group){
+// 		 	ds.push(datasetBarChart[x]);
+// 		 } 
+// 		}
+// 	return ds;
+// }
+
 function datasetBarChosen(group) {
 	var ds = [];
 	for (x in datasetBarChart) {
@@ -112,27 +129,12 @@ function datasetBarChosen(group) {
 }
 
 
-function dsBarChartBasics() {
-		var margin = {top: 30, right: 5, bottom: 20, left: 50},
-		width = 500 - margin.left - margin.right,
-	   height = 250 - margin.top - margin.bottom,
-		colorBar = barColorScheme,
-		barPadding = 1
-		;
-		
-		return {
-			margin : margin, 
-			width : width, 
-			height : height, 
-			colorBar : colorBar, 
-			barPadding : barPadding
-		}			
-		;
-}
+
 
 function dsBarChart() {
 
-	var firstDatasetBarChart = datasetBarChosen(group);         	
+	//var firstDatasetBarChart = datasetBarChosen(group); 
+	var firstDatasetBarChart = datasetBarChosen1("assetpricing-001")        	
 	
 	var basics = dsBarChartBasics();
 	
@@ -169,6 +171,7 @@ function dsBarChart() {
 	
 	var plot = svg
 		    .append("g")
+		    .attr("id", "barChartBody")
 		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
 		    ;
 	            
@@ -197,7 +200,7 @@ function dsBarChart() {
 	.enter()
 	.append("text")
 	.text(function(d) {
-			return formatAsInteger(d.measure);
+			return formatAsInteger(d.measure) + " posts";
 	})
 	.attr("text-anchor", "middle")
 	// Set x position to the left edge of each bar plus half the bar width
@@ -219,6 +222,7 @@ function dsBarChart() {
 	
 	var xLabels = svg
 		    .append("g")
+		    .attr("id", "barLabels")
 		    .attr("transform", "translate(" + margin.left + "," + (margin.top + height)  + ")")
 		    ;
 	
@@ -226,13 +230,13 @@ function dsBarChart() {
 		  .data(firstDatasetBarChart)
 		  .enter()
 		  .append("text")
-		  .text(function(d) { return d.category;})
+		  .text(function(d) { return d.user_type;})
 		  .attr("text-anchor", "middle")
 			// Set x position to the left edge of each bar plus half the bar width
 						   .attr("x", function(d, i) {
 						   		return (i * (width / firstDatasetBarChart.length)) + ((width / firstDatasetBarChart.length - barPadding) / 2);
 						   })
-		  .attr("y", 15)
+		  .attr("y", 25)
 		  .attr("class", "xAxis")
 		  //.attr("style", "font-size: 12; font-family: Helvetica, sans-serif")
 		  ;			
@@ -241,10 +245,10 @@ function dsBarChart() {
 	
 	svg.append("text")
 		.attr("x", (width + margin.left + margin.right)/2)
-		.attr("y", 15)
+		.attr("y", 25)
 		.attr("class","title")				
 		.attr("text-anchor", "middle")
-		.text("Overall Forum Breakdown ")
+		.text("Number of Posts by Various Users ")
 		;
 }
 
@@ -279,7 +283,8 @@ function updateBarChart(group, colorChosen) {
 	      ;
 	      
 	   var svg = d3.select("#barChart svg");
-	      
+
+	   //update here
 	   var plot = d3.select("#barChartPlot")
 	   	.datum(currentDatasetBarChart)
 		   ;
@@ -322,12 +327,15 @@ function updateBarChart(group, colorChosen) {
 
 		svg.selectAll("text.title") // target the text element(s) which has a title class defined
 			.attr("x", (width + margin.left + margin.right)/2)
-			.attr("y", 15)
+			.attr("y", 25)
 			.attr("class","title")				
 			.attr("text-anchor", "middle")
 			.text(group + "'s Number of Words of a Post vs its Votes ")
 		;
 }
+
+
+
 
 
 /*
@@ -445,7 +453,7 @@ function dsLineChart() {
 
 }
 
-dsLineChart();
+//dsLineChart();
 
 
  /* ** UPDATE CHART ** */

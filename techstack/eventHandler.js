@@ -25,7 +25,7 @@ var arcFinal3 = d3.arc().innerRadius(basics.innerRadiusFinal3).outerRadius(basic
 	
 				/* update bar chart when user selects piece of the pie chart */
 				//updateBarChart(dataset[i].category);
-				updateBarChart(d.data.category, basics.color(i));
+				//updateBarChart(d.data.category, basics.color(i));
 				updateLineChart(d.data.category, basics.color(i));
 			 
 	}

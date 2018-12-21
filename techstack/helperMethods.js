@@ -10,7 +10,8 @@ function datasetPieChosen(group) {
 }
 
 function dsPieChartBasics(pieColorScheme) {
-	var width = 400, height = 400, outerRadius = Math.min(width, height) / 2, innerRadius = outerRadius * .999,   
+	var margin = {top: 40, right: 5, bottom: 40, left: 50};
+	var width = 500, height = 500, outerRadius = Math.min(width, height) / 2, innerRadius = outerRadius * .999,   
 		// for animation
 		innerRadiusFinal = outerRadius * .5, innerRadiusFinal3 = outerRadius* .45, color = pieColorScheme;   //builtin range of colors
 		return { 
@@ -28,4 +29,22 @@ function dsPieChartBasics(pieColorScheme) {
 function angle(d) {
 	var a = (d.startAngle + d.endAngle) * 90 / Math.PI - 90;
 	return a > 90 ? a - 180 : a;
+}
+
+function dsBarChartBasics() {
+	var margin = {top: 40, right: 5, bottom: 40, left: 50},
+		width = 500 - margin.left - margin.right,
+	   height = 300 - margin.top - margin.bottom,
+		colorBar = barColorScheme,
+		barPadding = 1
+		;
+		
+		return {
+			margin : margin, 
+			width : width, 
+			height : height, 
+			colorBar : colorBar, 
+			barPadding : barPadding
+		}			
+		;
 }
