@@ -75,14 +75,25 @@ var elements = $(document).find('select.form-control');
 
 for (var i = 0, l = elements.length; i < l; i++) {
   var $select = $(elements[i]), $label = $select.parents('.form-group').find('label');
+  
+  var all_nodes = d3.select('svg').selectAll('g')._groups[0]
+  //console.log(d3.select('svg').selectAll('g')._groups[0][0])
+  
   $select.on('change', function(e){
     var selectedCourse = $select.select2('data')[0].id;
-    // for (i in nodes){
-    //   if (nodes[i].name ==selectedCourse){
-    //     console.log(d3.select('svg').select('g').on('click')( nodes[i]))
+    var id = String(selectedCourse)
+    console.log('#'+ id)
+    console.log(d3.select('.svg').select('#'+ id))
+    for (i in nodes){
+      if (nodes[i].name ==selectedCourse){
+        console.log(nodes[i].radius)
+        nodes[i].radius = nodes[i].radius*2 
+        console.log(nodes[i].name)
+        
+        // console.log(d3.select('svg').select('g').on('click')( nodes[i]))
 
-    //   }
-    // }
+      }
+    }
     
     
     });

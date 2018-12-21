@@ -1,27 +1,14 @@
 import csv
 import json
+import course_info_processor as c
+course_id =['analysenumerique-001', 'assetpricing-001', 'automata-002', 'bigdata-edu-001', 'bioinformatics-001', 'blendedlearning-001', 'bluebrain-001', 'climateliteracy-002', 'compilers-003', 'compmethods-004', 'crypto-008', 'cyhfisica-001', 'dataanalysis-002', 'datasci-001', 'design-003', 'designingcities-001', 'digitalmedia-001', 'dsalgo-001', 'dsp-002', 'edc-002', 'einstein-001', 'finance-001', 'friendsmoneybytes-002', 'gametheory-003', 'gamification-003', 'genomescience-002', 'globalwarming-001', 'hci-004', 'historyofrock1-002', 'humankind-001', 'intro-cpp-fr-001', 'intro-java-fr-001', 'introeulaw-001', 'intropsych-001', 'introstats-001', 'lead-ei-001', 'linearprogramming-001', 'mathematicalmethods-002', 'mentalhealth-002', 'ml-003', 'nanotech-001', 'neuralnets-2012-001', 'nlangp-001', 'onlinegames-001', 'organalysis-002', 'pgm-003', 'pkubioinfo-001', 'pkuic-001', 'precalc-001', 'progfun-003', 'programming1-002', 'programming2-001', 'relationship-001', 'sciwrite-2012-001', 'sna-003', 'startup-001', 'stats1-002', 'usefulgenetics-002', 'videogameslearning-001', 'virology-001']
 course_info_loc = "/Users/thotran/LMT_MOOCs/courseraforums/data/course_information.csv"
-def processCourseInfo(course_info_loc):
-    with open(course_info_loc, encoding="utf-8") as course_info:
-        course_info_reader = csv.DictReader(course_info)
-        data = {}
-        type_map = {'Q': 'Quantitative', 'E': 'Education', 'S': 'Science', 'A': 'Arts', 'H': 'Humanities', 'B': 'Business', 'W': 'Writing', '?': 'Interdisciplinary'}
-        language = {'E': 'English', 'SP': 'Spanish', 'FR': 'French', 'CH': 'Chinese'}
-        course_name = []
-        for row in course_info_reader:
-            course_name.append(row.get('course_id'))
-            course = dict()
-            course['name'] = row.get('name')
-            course['icon'] = row.get('course_id')
-            course['cat'] = type_map[row.get('type')]
-            course['lang'] = language[row.get('language')]
-            course['value'] = row.get('num_users')
-            course['desc'] = "Course: " + course.get('name') +'<br/>' + "Language: " + course.get('lang') +'<br/>' + "Duration: " + row.get('weeks') + ' weeks'+'<br/>'+ 'User count: '+row.get('num_users')
-            data[row.get('course_id')] = course
-        return course_name
-##    with open('class_info.json', mode='w') as outfile:
-##        json.dump(data, outfile)
-#print(processCourseInfo(course_info_loc))
+with open("course_bubbles",  mode ='w') as outfile:
+    json.dump(c.processCourseInfo(course_info_loc), outfile)
+
+
+    
+
 course_threads_loc = "/Users/thotran/LMT_MOOCs/courseraforums/data/course_threads.csv"
 def processThreads(course_threads_loc):
     with open(course_threads_loc, encoding = 'utf-8') as course_threads:
@@ -226,7 +213,6 @@ def userVSPostNum(course_id, feature, file):
         json.dump(postsByUser, outfile)
     return postsByUser
 
-course_id =['analysenumerique-001', 'assetpricing-001', 'automata-002', 'bigdata-edu-001', 'bioinformatics-001', 'blendedlearning-001', 'bluebrain-001', 'climateliteracy-002', 'compilers-003', 'compmethods-004', 'crypto-008', 'cyhfisica-001', 'dataanalysis-002', 'datasci-001', 'design-003', 'designingcities-001', 'digitalmedia-001', 'dsalgo-001', 'dsp-002', 'edc-002', 'einstein-001', 'finance-001', 'friendsmoneybytes-002', 'gametheory-003', 'gamification-003', 'genomescience-002', 'globalwarming-001', 'hci-004', 'historyofrock1-002', 'humankind-001', 'intro-cpp-fr-001', 'intro-java-fr-001', 'introeulaw-001', 'intropsych-001', 'introstats-001', 'lead-ei-001', 'linearprogramming-001', 'mathematicalmethods-002', 'mentalhealth-002', 'ml-003', 'nanotech-001', 'neuralnets-2012-001', 'nlangp-001', 'onlinegames-001', 'organalysis-002', 'pgm-003', 'pkubioinfo-001', 'pkuic-001', 'precalc-001', 'progfun-003', 'programming1-002', 'programming2-001', 'relationship-001', 'sciwrite-2012-001', 'sna-003', 'startup-001', 'stats1-002', 'usefulgenetics-002', 'videogameslearning-001', 'virology-001']
 ##dataBarChart = []
 ##for course in course_id:
 ##    dataBarChart.extend(userVSPostNum(course, "user_type", course+"user_type"))
@@ -241,11 +227,11 @@ course_id =['analysenumerique-001', 'assetpricing-001', 'automata-002', 'bigdata
 ##with open("thread_by_topics", mode='w') as outfile:
 ##    json.dump(threads_by_topics, outfile)
     
-threads_by_ftopics =[]
-for course in course_id:
-    threads_by_ftopics.extend(groupThreadBy(course, 'og_forum'))
-with open("thread_by_ftopics", mode='w') as outfile:
-    json.dump(threads_by_ftopics, outfile) 
+##threads_by_ftopics =[]
+##for course in course_id:
+##    threads_by_ftopics.extend(groupThreadBy(course, 'og_forum'))
+##with open("thread_by_ftopics", mode='w') as outfile:
+##    json.dump(threads_by_ftopics, outfile) 
         
         
 
