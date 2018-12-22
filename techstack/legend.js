@@ -15,7 +15,7 @@
 		//legend for bubble size
 
 		let sizeScale = d3.scaleOrdinal()
-  			.domain(['fewer users', 'more users'])
+  			.domain(['fewer students', 'more students'])
   			.range([5, 10] );
 
 

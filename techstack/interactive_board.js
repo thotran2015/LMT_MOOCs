@@ -254,7 +254,7 @@ function dsBarChart() {
 		.attr("y", 25)
 		.attr("class","title")				
 		.attr("text-anchor", "middle")
-		.text("Number of Posts by Various Users ")
+		.text("Number of Forum Posts by Various Users ")
 		;
 }
 

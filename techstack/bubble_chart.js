@@ -90,6 +90,7 @@ function dsBubbleChart() {
 			.attr('id', d => d.id)
 			.attr('r', 0)
 			.style('fill', d => scaleColor(d.cat))
+			.style('stroke-width',  d=> 3)
 			.transition().duration(2000).ease(d3.easeElasticOut)
 				.tween('circleIn', (d) => {
 					let i = d3.interpolateNumber(0, d.radius);

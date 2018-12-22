@@ -260,7 +260,7 @@ function updateBarChart1(currentNode) {
 			.attr("y", 25)
 			.attr("class","title")				
 			.attr("text-anchor", "middle")
-			.text("Number of Posts By Various Users in "+ group)
+			.text("Number of Forum Posts By Various Users in "+ group)
 		;
 }	
 //blur when click on the 
