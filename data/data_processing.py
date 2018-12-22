@@ -1,6 +1,7 @@
 import csv
 import json
 import course_info_processor as c
+import course_thread as t
 course_id =['analysenumerique-001', 'assetpricing-001', 'automata-002', 'bigdata-edu-001', 'bioinformatics-001', 'blendedlearning-001', 'bluebrain-001', 'climateliteracy-002', 'compilers-003', 'compmethods-004', 'crypto-008', 'cyhfisica-001', 'dataanalysis-002', 'datasci-001', 'design-003', 'designingcities-001', 'digitalmedia-001', 'dsalgo-001', 'dsp-002', 'edc-002', 'einstein-001', 'finance-001', 'friendsmoneybytes-002', 'gametheory-003', 'gamification-003', 'genomescience-002', 'globalwarming-001', 'hci-004', 'historyofrock1-002', 'humankind-001', 'intro-cpp-fr-001', 'intro-java-fr-001', 'introeulaw-001', 'intropsych-001', 'introstats-001', 'lead-ei-001', 'linearprogramming-001', 'mathematicalmethods-002', 'mentalhealth-002', 'ml-003', 'nanotech-001', 'neuralnets-2012-001', 'nlangp-001', 'onlinegames-001', 'organalysis-002', 'pgm-003', 'pkubioinfo-001', 'pkuic-001', 'precalc-001', 'progfun-003', 'programming1-002', 'programming2-001', 'relationship-001', 'sciwrite-2012-001', 'sna-003', 'startup-001', 'stats1-002', 'usefulgenetics-002', 'videogameslearning-001', 'virology-001']
 course_info_loc = "/Users/thotran/LMT_MOOCs/courseraforums/data/course_information.csv"
 with open("course_bubbles",  mode ='w') as outfile:

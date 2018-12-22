@@ -10,7 +10,7 @@ function datasetPieChosen(group) {
 }
 
 function dsPieChartBasics(pieColorScheme) {
-	var margin = {top: 40, right: 5, bottom: 40, left: 50};
+	var margin = {top: 40, right: 65, bottom: 70, left: 80};
 	var width = 500, height = 500, outerRadius = Math.min(width, height) / 2, innerRadius = outerRadius * .999,   
 		// for animation
 		innerRadiusFinal = outerRadius * .5, innerRadiusFinal3 = outerRadius* .45, color = pieColorScheme;   //builtin range of colors
@@ -33,7 +33,7 @@ function angle(d) {
 
 function dsBarChartBasics() {
 	var margin = {top: 40, right: 5, bottom: 40, left: 50},
-		width = 500 - margin.left - margin.right,
+		width = 750 - margin.left - margin.right,
 	   height = 300 - margin.top - margin.bottom,
 		colorBar = barColorScheme,
 		barPadding = 1

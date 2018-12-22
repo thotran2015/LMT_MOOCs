@@ -2,6 +2,7 @@
 		let svg = d3.select('svg');
 		let width = document.body.clientWidth/2; // get width in pixels
 		let height = +svg.attr('height');
+		console.log(height)
 		let centerX = width * 0.5;
 		let centerY = height * 0.5;
 		let strength = 0.05;

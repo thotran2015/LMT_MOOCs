@@ -125,18 +125,23 @@ function updatePieGraph(currentNode){
 	    .attr("transform", function(d) { return "translate(" + arcFinal.centroid(d) + ")rotate(" + angle(d) + ")"; })
 	      //.text(function(d) { return formatAsPercentage(d.value); })
 	    .text(function(d) { return d.data.category; });  
-
-	    pieBody.append("svg:text")
-	     	.attr("dy", ".35em")
-	      	.attr("text-anchor", "middle")
-	      	.text("Forum Topics of "+ currentNode.icon)
-	      	.attr("class","title");	
-
-	     pieBody.append("svg:text")
-	     .attr("dy", "1.50em")
+	// Pie chart title			
+		pieBody.append("svg:text")
+	     	.attr("dy", ".01em")
 	      .attr("text-anchor", "middle")
-	      .text(updatedData[1].thread_total +" threads")
-	      .attr("class","total")	
+	      .text("Threads Grouped by Discussion Topics ")
+	      .attr("class","title")
+	     pieBody.append("svg:text")
+	     	.attr("dy", "1.20em")
+	      .attr("text-anchor", "middle")
+	      .text("in "+ currentNode.icon)
+	      .attr("class","course")
+		pieBody.append("svg:text")
+	     .attr("dy", "2.50em")
+	      .attr("text-anchor", "middle")
+	      .text("Total # of threads: "+ updatedData[1].thread_total)
+	      .attr("class","total")
+	
 
 }
 
@@ -246,6 +251,7 @@ function updateBarChart1(currentNode) {
 						   })
 		  .attr("y", 25)
 		  .attr("class", "xAxis")
+		  .attr("style", "font-size: 11; font-family: Helvetica, sans-serif")
 
 
 

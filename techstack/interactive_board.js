@@ -80,14 +80,19 @@ function dsPieChart(mouseover, mouseout, up){
 		    	
 		// Pie chart title			
 		vis.append("svg:text")
-	     	.attr("dy", ".35em")
+	     	.attr("dy", ".01em")
 	      .attr("text-anchor", "middle")
-	      .text("Forum Threads of "+ starter)
+	      .text("Threads Grouped by Discussion Topics ")
 	      .attr("class","title")
-		vis.append("svg:text")
-	     .attr("dy", "1.50em")
+	     vis.append("svg:text")
+	     	.attr("dy", "1.20em")
 	      .attr("text-anchor", "middle")
-	      .text(dataset[1].thread_total +" threads")
+	      .text("in "+ starter)
+	      .attr("class","course")
+		vis.append("svg:text")
+	     .attr("dy", "2.50em")
+	      .attr("text-anchor", "middle")
+	      .text("Total # of threads: "+ dataset[1].thread_total)
 	      .attr("class","total")
 
 	      ;		    
@@ -233,12 +238,13 @@ function dsBarChart() {
 		  .text(function(d) { return d.user_type;})
 		  .attr("text-anchor", "middle")
 			// Set x position to the left edge of each bar plus half the bar width
-						   .attr("x", function(d, i) {
+			.attr("x", function(d, i) {
 						   		return (i * (width / firstDatasetBarChart.length)) + ((width / firstDatasetBarChart.length - barPadding) / 2);
 						   })
 		  .attr("y", 25)
 		  .attr("class", "xAxis")
-		  //.attr("style", "font-size: 12; font-family: Helvetica, sans-serif")
+
+		  .attr("style", "font-size: 11; font-family: Helvetica, sans-serif")
 		  ;			
 	 
 	// Title
