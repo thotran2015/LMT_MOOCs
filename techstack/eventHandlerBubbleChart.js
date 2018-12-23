@@ -79,9 +79,7 @@ function updatePieTitle(currentNode){
 	}
 
 function updatePieGraph(currentNode){
-	console.log(currentNode.icon)
 	var updatedData = datasetPieChosen(currentNode.icon)
-	console.log(updatedData)
 	var basics = dsPieChartBasics(pieColorScheme);
 	//remove pie body
 	d3.select("#pieChart").select("#pieChartPlot").select("#pieCenter").remove()
@@ -95,7 +93,6 @@ function updatePieGraph(currentNode){
 
    var pie = d3.pie()           //this will create arc data for us given a list of values
         .value(function(d) { return d.measure; });    //we must tell it out to access the value of each element in our data array
-   console.log(pie)
    var arcs = pieBody.selectAll("g.slice")     //this selects all <g> elements with class slice (there aren't any yet)
         .data(pie)                          //associate the generated pie data (an array of arcs, each having startAngle, endAngle and value properties) 
         .enter()                            //this will create <g> elements for every "extra" data element that should be associated with a selection. The result is creating a <g> for every object in the data array

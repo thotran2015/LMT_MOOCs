@@ -82,20 +82,13 @@ for (var i = 0, l = elements.length; i < l; i++) {
   $select.on('change', function(e){
     var selectedCourse = $select.select2('data')[0].id;
     var id = String(selectedCourse)
-    console.log('#'+ id)
-    console.log(d3.select('.svg').select('#'+ id))
     for (i in nodes){
-      if (nodes[i].name ==selectedCourse){
-        console.log(nodes[i].radius)
-        nodes[i].radius = nodes[i].radius*2 
-        console.log(nodes[i].name)
-        
-        // console.log(d3.select('svg').select('g').on('click')( nodes[i]))
-
+      if (nodes[i].name == selectedCourse){
+        d3.select('svg').select('g').on('click')(nodes[i])
       }
+      
     }
-    
-    
+
     });
   
   $select.select2({
